@@ -70,7 +70,7 @@ function createCatMarkupInfo({
   const catMarkupInfo = `<div>
         <img
           src="${url}"
-          width="300"
+          width="400"
         />
       </div>
       <div>
@@ -80,7 +80,7 @@ function createCatMarkupInfo({
             
           </p>
         </div>
-        <p>L${temperament}</p>
+        <p><b>Temperament: </b>${temperament}</p>
       </div>`;
   return catMarkupInfo;
 }

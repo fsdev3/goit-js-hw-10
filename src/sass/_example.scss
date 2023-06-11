@@ -1,11 +1,12 @@
 .container {
   width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 15px;
 }
 .cat-info {
+  margin-top: 15px;
   display: flex;
-  gap: 30px;
+  gap: 15px;
 }
 
 .title {
