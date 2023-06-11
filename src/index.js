@@ -1,11 +1,11 @@
 import { fetchBreeds, getCatInfo } from './cat-api.js';
 import SlimSelect from 'slim-select';
+import Notiflix from 'notiflix';
 import './sass/index.scss';
 
 const refs = {
   selectBreed: document.querySelector('select.breed-select'),
   dataLoader: document.querySelector('.overlay'),
-  error: document.querySelector('p.error'),
   catInfo: document.querySelector('.cat-info'),
 };
 
@@ -19,7 +19,9 @@ function onLoad() {
       });
     })
     .catch(error => {
-      toggleHidden(refs.error, 'remove');
+      Notiflix.Notify.failure(
+        'Oops! Something went wrong! Try reloading the page!'
+      );
     })
     .finally(() => {
       toggleHidden(refs.dataLoader);
@@ -40,19 +42,19 @@ function addMarkup(elem, markup) {
 
 window.addEventListener('load', onLoad);
 refs.selectBreed.addEventListener('change', onSelect);
-toggleHidden(refs.error);
 
 function onSelect(e) {
   const value = e.target.value;
   toggleHidden(refs.dataLoader, 'remove');
-  toggleHidden(refs.error);
   getCatInfo(value)
     .then(resp => {
       const markup = createCatMarkupInfo(resp[0]);
       addMarkup(refs.catInfo, markup);
     })
     .catch(error => {
-      toggleHidden(refs.error, 'remove');
+      Notiflix.Notify.failure(
+        'Oops! Something went wrong! Try reloading the page!'
+      );
     })
     .finally(() => {
       toggleHidden(refs.dataLoader);
